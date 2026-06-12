@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aasawari Babar — Data Science Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg2: #f7f7f5;
+      --bg3: #f0efe9;
+      --text: #1a1a18;
+      --text2: #5a5a56;
+      --text3: #9a9994;
+      --border: rgba(0,0,0,0.1);
+      --border2: rgba(0,0,0,0.18);
+      --purple-bg: #EEEDFE; --purple-text: #3C3489; --purple-border: #AFA9EC;
+      --teal-bg: #E1F5EE; --teal-text: #085041; --teal-border: #5DCAA5;
+      --blue-bg: #E6F1FB; --blue-text: #0C447C; --blue-border: #85B7EB;
+      --amber-bg: #FAEEDA; --amber-text: #633806; --amber-border: #EF9F27;
+      --red-bg: #FCEBEB; --red-text: #791F1F; --red-border: #F09595;
+      --pink-bg: #FBEAF0; --pink-text: #72243E; --pink-border: #ED93B1;
+      --accent: #534AB7;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a18; --bg2: #242420; --bg3: #2e2e2a;
+        --text: #f0efe9; --text2: #b4b2a9; --text3: #6e6e68;
+        --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.18);
+        --purple-bg: #26215C; --purple-text: #CECBF6; --purple-border: #534AB7;
+        --teal-bg: #04342C; --teal-text: #9FE1CB; --teal-border: #0F6E56;
+        --blue-bg: #042C53; --blue-text: #B5D4F4; --blue-border: #185FA5;
+        --amber-bg: #412402; --amber-text: #FAC775; --amber-border: #854F0B;
+        --red-bg: #501313; --red-text: #F7C1C1; --red-border: #A32D2D;
+        --pink-bg: #4B1528; --pink-text: #F4C0D1; --pink-border: #993556;
+        --accent: #7F77DD;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg3);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      height: 52px;
+    }
+    .nav-name { font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* LAYOUT */
+    .page { max-width: 780px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+    /* HERO */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .6rem;
+    }
+    .hero h1 { font-size: 34px; font-weight: 600; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .hero .tagline { font-size: 15px; color: var(--text2); max-width: 560px; margin-bottom: 1.5rem; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--text2); text-decoration: none;
+      border: 0.5px solid var(--border2); border-radius: 8px; padding: 5px 12px;
+      background: var(--bg); transition: background .15s;
+    }
+    .hero-link:hover { background: var(--bg2); }
+    .hero-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* SECTIONS */
+    section { padding: 2.2rem 0; border-bottom: 0.5px solid var(--border); }
+    .sec-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text3); margin-bottom: 1.2rem;
+    }
+
+    /* SKILLS */
+    .skills-group { margin-bottom: 1rem; }
+    .skills-group:last-child { margin-bottom: 0; }
+    .skills-group-label { font-size: 12px; font-weight: 500; color: var(--text3); margin-bottom: .45rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag {
+      font-size: 12px; padding: 4px 10px; border-radius: 8px;
+      border: 0.5px solid var(--border); color: var(--text2); background: var(--bg2);
+    }
+    .tag.purple { background: var(--purple-bg); color: var(--purple-text); border-color: var(--purple-border); }
+    .tag.teal   { background: var(--teal-bg);   color: var(--teal-text);   border-color: var(--teal-border); }
+    .tag.blue   { background: var(--blue-bg);   color: var(--blue-text);   border-color: var(--blue-border); }
+    .tag.amber  { background: var(--amber-bg);  color: var(--amber-text);  border-color: var(--amber-border); }
+    .tag.red    { background: var(--red-bg);    color: var(--red-text);    border-color: var(--red-border); }
+    .tag.pink   { background: var(--pink-bg);   color: var(--pink-text);   border-color: var(--pink-border); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .proj-card {
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 1.1rem 1.25rem;
+      display: flex; flex-direction: column;
+    }
+    .proj-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .proj-year { font-size: 11px; color: var(--text3); margin-bottom: .6rem; }
+    .proj-desc { font-size: 13px; color: var(--text2); line-height: 1.6; flex: 1; margin-bottom: .8rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: .7rem; }
+    .proj-tag { font-size: 11px; padding: 2px 7px; border-radius: 6px; background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); }
+    .proj-link { font-size: 12px; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+    .proj-link:hover { text-decoration: underline; }
+    .proj-link svg { width: 12px; height: 12px; }
+
+    /* EXPERIENCE / EDU */
+    .timeline { display: flex; flex-direction: column; gap: 1.4rem; }
+    .tl-item {}
+    .tl-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; margin-bottom: 2px; }
+    .tl-role { font-size: 14px; font-weight: 600; }
+    .tl-date { font-size: 12px; color: var(--text3); }
+    .tl-org { font-size: 13px; color: var(--text3); margin-bottom: 6px; }
+    .tl-bullets { padding-left: 1.1rem; font-size: 13px; color: var(--text2); line-height: 1.7; }
+    .tl-bullets li { margin-bottom: 2px; }
+
+    /* CERTS */
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 1.6rem; }
+    .cert-card { background: var(--bg2); border-radius: 10px; padding: .85rem 1rem; }
+    .cert-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .cert-issuer { font-size: 12px; color: var(--text2); margin-bottom: 2px; }
+    .cert-year { font-size: 11px; color: var(--text3); }
+
+    /* AWARDS */
+    .awards { display: flex; flex-direction: column; gap: 8px; }
+    .award { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .award-icon { color: #EF9F27; flex-shrink: 0; margin-top: 3px; }
+
+    /* CONTACT */
+    .contact-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; color: var(--text2); text-decoration: none;
+      border: 0.5px solid var(--border2); border-radius: 8px; padding: 6px 14px;
+      background: var(--bg); transition: background .15s;
+    }
+    .contact-link:hover { background: var(--bg2); }
+    .contact-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 2rem 0; font-size: 12px; color: var(--text3); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 12px; }
+      .nav-links a:nth-child(n+4) { display: none; }
+      .hero h1 { font-size: 26px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">Aasawari Babar</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <p class="hero-eyebrow">Data Science &amp; Business Analytics Engineer</p>
+    <h1>Aasawari Babar</h1>
+    <p class="tagline">Hands-on experience building end-to-end ML pipelines, predictive models, and data-driven applications. Skilled at translating complex datasets into actionable insights. Experienced with AWS cloud, statistical analysis, and full-stack development.</p>
+    <div class="hero-links">
+      <a class="hero-link" href="mailto:aasawaribabar121@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        aasawaribabar121@gmail.com
+      </a>
+      <a class="hero-link" href="https://linkedin.com/in/aasawari-babar-2641b7299" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="hero-link" href="https://github.com/babaraasawari" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a class="hero-link" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Nagpur, India
+      </a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="sec-label">Technical Skills</p>
+    <div class="skills-group">
+      <p class="skills-group-label">Data Science</p>
+      <div class="tags">
+        <span class="tag purple">Predictive Modeling</span>
+        <span class="tag purple">Statistical Analysis</span>
+        <span class="tag purple">EDA</span>
+        <span class="tag purple">Feature Engineering</span>
+        <span class="tag purple">A/B Testing</span>
+        <span class="tag purple">Business Intelligence</span>
+        <span class="tag purple">Data Wrangling</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <p class="skills-group-label">Machine Learning</p>
+      <div class="tags">
+        <span class="tag teal">Scikit-learn</span>
+        <span class="tag teal">TensorFlow</span>
+        <span class="tag teal">XGBoost</span>
+        <span class="tag teal">Random Forest</span>
+        <span class="tag teal">Pandas</span>
+        <span class="tag teal">NumPy</span>
+        <span class="tag teal">OpenCV</span>
+        <span class="tag teal">NLTK</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <p class="skills-group-label">Data Visualization</p>
+      <div class="tags">
+        <span class="tag amber">Matplotlib</span>
+        <span class="tag amber">Seaborn</span>
+        <span class="tag amber">Streamlit</span>
+        <span class="tag amber">Power BI</span>
+        <span class="tag amber">Tableau</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <p class="skills-group-label">Cloud &amp; DevOps</p>
+      <div class="tags">
+        <span class="tag blue">AWS EC2/S3/Lambda</span>
+        <span class="tag blue">IAM / RDS / CloudWatch</span>
+        <span class="tag blue">Docker</span>
+        <span class="tag blue">Git / GitHub</span>
+      </div>
+    </div>
+    <div class="skills-group">
+      <p class="skills-group-label">Languages &amp; Frameworks</p>
+      <div class="tags">
+        <span class="tag red">Python</span>
+        <span class="tag red">SQL</span>
+        <span class="tag red">JavaScript</span>
+        <span class="tag pink">React</span>
+        <span class="tag pink">Flask</span>
+        <span class="tag pink">Node.js</span>
+        <span class="tag pink">MongoDB</span>
+        <span class="tag pink">MySQL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="sec-label">Projects</p>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <h3>PCOS Prediction System</h3>
+        <p class="proj-year">2025 – 2026</p>
+        <p class="proj-desc">Hybrid ML + OCR system achieving 92% prediction accuracy on 1,000 clinical records. Integrated OCR to auto-extract lab parameters, cutting manual data entry by 80%. Deployed as both a Streamlit web app and a desktop application with real-time probability graphs.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">XGBoost</span>
+          <span class="proj-tag">OpenCV</span>
+          <span class="proj-tag">Pytesseract</span>
+          <span class="proj-tag">Streamlit</span>
+        </div>
+        <a class="proj-link" href="https://github.com/babaraasawari/PCOS-Prediction-System" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <div class="proj-card">
+        <h3>Smart Budget Tracker</h3>
+        <p class="proj-year">2024</p>
+        <p class="proj-desc">Forecasted monthly budgets with 85% accuracy using regression on 12 months of transaction data. Built 10 Flask REST API endpoints and interactive dashboards across 8 expense categories, reducing budget review time by 60%.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Flask</span>
+          <span class="proj-tag">MySQL</span>
+          <span class="proj-tag">Pandas</span>
+          <span class="proj-tag">Matplotlib</span>
+          <span class="proj-tag">REST API</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <h3>GlobeBudget — PM Case Study</h3>
+        <p class="proj-year">2026</p>
+        <p class="proj-desc">Prioritized 15 features using RICE scoring after analyzing 6 competitor apps. Prototyped 30 screens in Figma covering expense tracking and currency conversion. Delivered a 3-phase product roadmap with 5 measurable KPIs.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Product Management</span>
+          <span class="proj-tag">Figma</span>
+          <span class="proj-tag">User Research</span>
+          <span class="proj-tag">RICE Scoring</span>
+        </div>
+        <a class="proj-link" href="https://github.com/babaraasawari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="sec-label">Experience</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-header">
+          <span class="tl-role">Technical Head — Hackathon</span>
+          <span class="tl-date">Jan 2025 – Feb 2026</span>
+        </div>
+        <p class="tl-org">Technex-25, SVPCET · Nagpur</p>
+        <ul class="tl-bullets">
+          <li>Led a 10-member technical team supporting 500 competing teams across a national hackathon, achieving 100% infrastructure uptime over 48 hours.</li>
+          <li>Resolved 15 critical technical issues in real time under deadline pressure, reducing escalation rate by 40% vs. the previous event cycle.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-header">
+          <span class="tl-role">Sports Coordinator</span>
+          <span class="tl-date">Dec 2024 – Jan 2026</span>
+        </div>
+        <p class="tl-org">Insight Sports, SVPCET · Nagpur</p>
+        <ul class="tl-bullets">
+          <li>Managed operations for 2 annual sports events, coordinating 100 participants and 15 faculty stakeholders, improving event execution efficiency by 30%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:2rem">Education</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-header">
+          <span class="tl-role">B.Tech — Computer Science &amp; Engineering (Data Science)</span>
+          <span class="tl-date">Aug 2023 – Aug 2027</span>
+        </div>
+        <p class="tl-org">St. Vincent Pallotti College of Engineering &amp; Technology, Nagpur · GPA: 7.5/10</p>
+        <p style="font-size:12px; color:var(--text3); margin-top:4px;">Relevant: Machine Learning, Data Structures, DBMS, Statistics &amp; Probability, Cloud Computing, OS</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-header">
+          <span class="tl-role">High School Diploma — Science</span>
+          <span class="tl-date">2021 – 2023</span>
+        </div>
+        <p class="tl-org">Shri Rajendra High School, Nagpur</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <p class="sec-label">Certifications</p>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <p class="cert-name">Fundamentals of Deep Learning</p>
+        <p class="cert-issuer">NVIDIA</p>
+        <p class="cert-year">2026</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-name">GenAI Powered Data Analytics Job Simulation</p>
+        <p class="cert-issuer">Tata via Forage</p>
+        <p class="cert-year">2026</p>
+      </div>
+      <div class="cert-card">
+        <p class="cert-name">NASA International Space Apps Challenge</p>
+        <p class="cert-issuer">NASA / Global Hackathon</p>
+        <p class="cert-year">2024</p>
+      </div>
+    </div>
+
+    <p class="sec-label" style="margin-top:1.5rem">Awards</p>
+    <div class="awards">
+      <div class="award">
+        <svg class="award-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        <span>4th Place (National) — G.H. Raisoni Hackathon 2026, competing against 100 teams nationwide.</span>
+      </div>
+      <div class="award">
+        <svg class="award-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        <span>Top 100 of 500 Teams — Technex-25 national-level hackathon at SVPCET.</span>
+      </div>
+      <div class="award">
+        <svg class="award-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span>1st Place — RTMNU Basketball Competition; represented institute at inter-university level.</span>
+      </div>
+      <div class="award">
+        <svg class="award-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span>4-Time National Representative — DSO Nationals in Speed Skating.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="sec-label">Contact</p>
+    <div class="contact-row">
+      <a class="contact-link" href="mailto:aasawaribabar121@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        aasawaribabar121@gmail.com
+      </a>
+      <a class="contact-link" href="tel:+918468872116">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +91 84688 72116
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/aasawari-babar-2641b7299" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-link" href="https://github.com/babaraasawari" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  &copy; 2026 Aasawari Babar · Built with HTML &amp; CSS
+</footer>
+
+</body>
+</html>
